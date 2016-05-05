@@ -1,0 +1,23 @@
+{
+  "name": "async-helper",
+  "version": "0.5.0",
+  "description": "This package will read an array of async function responses and create a final, single response with error or success to Express.",
+  "main": "async-helper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "async",
+    "express",
+    "response",
+    "helper",
+    "http",
+    "sequential",
+    "parallell"
+  ],
+  "author": "Eduardo Russo <russoedu@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.0"
+  }
+}
