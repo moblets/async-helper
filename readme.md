@@ -116,46 +116,16 @@ module.exports = {
 After all the functions executions, you should get an array like this one:
 
 ```javascript
-	[ // This array was generated in sequential functions
+[ // This array was generated in sequential functions
+	{
+		code: 400,
+		errors: ['missing GIT checkout hash']
+	},
+  {},
+  {},
+	[ // This array was generate in parallell as the last sequential function
+		{},
 		{
-			code: 400,
-			errors: ['missing GIT checkout hash']
-		},
-    {},
-    {},
-		[ // This array was generate in parallell as the last sequential function
-			{},
-			{
-			'en-US': {
-				mobletLabel: 'Fidelity Card',
-				mobletHint: 'Create a fidelity card to your customers'
-			},
-			'pt-BR': {
-				mobletLabel: 'Cartão de Fidelidade',
-				mobletHint: 'Crie um cartão de fidelidade para seus clientes'
-			},
-			{}
-		]
-	]
-```
-
-## Function return
-
-If some error occoured, you should get an object like this:
-```javascript
-	{
-		code: 405,
-		error: 'Moblet already exists. Perform PUT to update'
-}
-```
-
-In a success, something like this:
-
-```javascript
-Success example:
-	{
-		code: 200,
-		errors: [],
 		'en-US': {
 			mobletLabel: 'Fidelity Card',
 			mobletHint: 'Create a fidelity card to your customers'
@@ -163,6 +133,36 @@ Success example:
 		'pt-BR': {
 			mobletLabel: 'Cartão de Fidelidade',
 			mobletHint: 'Crie um cartão de fidelidade para seus clientes'
-		}
+		},
+		{}
+	]
+]
+```
+
+## Function return
+
+If some error occoured, you should get an object like this:
+```javascript
+{
+	code: 405,
+	error: 'Moblet already exists. Perform PUT to update'
+}
+```
+
+In a success, something like this:
+
+```javascript
+Success example:
+{
+	code: 200,
+	errors: [],
+	'en-US': {
+		mobletLabel: 'Fidelity Card',
+		mobletHint: 'Create a fidelity card to your customers'
+	},
+	'pt-BR': {
+		mobletLabel: 'Cartão de Fidelidade',
+		mobletHint: 'Crie um cartão de fidelidade para seus clientes'
+	}
 }
 ```
