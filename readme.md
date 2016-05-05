@@ -1,15 +1,25 @@
 
 # async-helper
 
-This helper gets an array of _[async](https://www.npmjs.com/package/async)_ responses and create a final, single response to _(express)[https://www.npmjs.com/package/express]_.
+This helper gets an array of _[async](https://www.npmjs.com/package/async)_ responses and create a final, single response to _[express](https://www.npmjs.com/package/express)_.
 
 Each function in _async_ should set the err variable to true if an error occoured so async-helper will use it's response to create the HTML code and create the object that will be used by Express to send the response.
+
+The default HTML code, if no error occoured is succes (200).
+## Install
+
+In your project root folder, run
+
+```
+$ npm install --save async-helper
+```
 
 ## Usage
 
 You should call async-helper after the execution of your async functions, for instance:
 
 ```javascript
+var asyncHelper = require('async-helper');
 /*
  * START SERIAL FUNCTIONS
  */

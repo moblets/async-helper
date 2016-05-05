@@ -58,24 +58,25 @@ var _ = require('lodash');
  * 		}
  *  }
  */
-exports.callback = function(err, asyncResponse) {
-  console.log(asyncResponse);
+var callback = function(err, response) {
   var finalResponse = {};
   finalResponse.code = 200;
 
-  for (var i in asyncResponse) {
-    // Iterate the parallel asyncResponses
-    if (!_.isEmpty(asyncResponse[i])) {
-      if (_.isArray(asyncResponse[i])) {
-        asyncResponse[i] = this.callback(err, asyncResponse[i]);
+  for (var i in response) {
+    // Iterate the parallel responses
+    if (!_.isEmpty(response[i])) {
+      if (_.isArray(response[i])) {
+        response[i] = callback(err, response[i]);
       }
-      if (err && asyncResponse[i].code) {
-        finalResponse = asyncResponse[i];
-        finalResponse.code = asyncResponse[i].code;
+      if (err && response[i].code) {
+        finalResponse = response[i];
+        finalResponse.code = response[i].code;
       } else {
-        finalResponse = Object.assign(finalResponse, asyncResponse[i]);
+        finalResponse = Object.assign(finalResponse, response[i]);
       }
     }
   }
   return finalResponse;
 };
+
+module.exports = callback;

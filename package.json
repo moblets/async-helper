@@ -1,6 +1,6 @@
 {
   "name": "async-helper",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "This package will read an array of async function responses and create a final, single response with error or success to Express.",
   "main": "async-helper.js",
   "scripts": {
@@ -20,6 +20,6 @@
   "dependencies": {
     "lodash": "^4.0",
     "async": "^1.5",
-    "express": "^4",
+    "express": "^4"
   }
 }
