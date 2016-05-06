@@ -28,17 +28,13 @@ async.series([
   function(callback) {
     args.validate(
       mobletId, gitUrl, mobletName, mobletVersion,
-      gitCheckout, function(err, response) {
-        callback(err, response);
-      });
+      gitCheckout, callback);
   },
   // GIT Clone
   function(callback) {
     git.clone(
       mobletId, gitUrl, gitCheckout,
-      mobletVersion, function(err, response) {
-        callback(err, response);
-      });
+      mobletVersion, callback);
   },
   /*
    * START PARALLELL FUNCTIONS
@@ -47,21 +43,16 @@ async.series([
     async.parallel([
       // Test Moblet with Jasmine
       function(callback) {
-        moblet.runTests(mobletId, function(err, response) {
-          callback(err, response);
-        });
+        moblet.runTests(mobletId, callback);
       },
       // Get Moblet definition
       function(callback) {
-        moblet.getDefinitions(mobletId, function(err, response) {
-          callback(err, response);
-        });
+        moblet.getDefinitions(mobletId, callback);
       }
     ],
       // Parallel callback function
-      function(err, response) {
-        callback(err, response);
-      });
+      callback
+    )
   }
 ],
   function(err, response) {
@@ -152,7 +143,6 @@ If some error occoured, you should get an object like this:
 In a success, something like this:
 
 ```javascript
-Success example:
 {
 	code: 200,
 	errors: [],
